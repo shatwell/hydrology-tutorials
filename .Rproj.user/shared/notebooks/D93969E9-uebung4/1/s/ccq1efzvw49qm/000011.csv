@@ -1,0 +1,2 @@
+"0","elbe$jahr <- year(elbe$date)"
+"0","head(elbe)"

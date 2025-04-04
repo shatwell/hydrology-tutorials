@@ -1,0 +1,3 @@
+"0","ggplot(data = schorgast) +"
+"0","  geom_point(aes(x = Q1, y = W1, colour = Datum)) + "
+"0","  theme_light()"

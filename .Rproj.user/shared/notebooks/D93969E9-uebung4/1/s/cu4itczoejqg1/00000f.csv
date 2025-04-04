@@ -1,0 +1,3 @@
+"0","jahresNQ <- aggregate(DATASPALTE ~ GRUPPIERSPALTE, data = elbe, FUN = min)"
+"2","Error in eval(predvars, data, env) : object 'DATASPALTE' not found
+"

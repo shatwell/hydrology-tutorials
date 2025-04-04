@@ -1,0 +1,4 @@
+"0","sum1 <- cumsum(schorgast$Q1)"
+"0","sum2 <- cumsum(schorgast$Q2)"
+"0",""
+"0","plot(sum2 ~ sum1, xlab=""Station 1"", ylab=""Station 2"")"

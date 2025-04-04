@@ -1,0 +1,2 @@
+"0","tracer$conc0 <- tracer$conc - C0"
+"0","plot(conc0~time, tracer, type=""l"")"

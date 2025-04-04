@@ -1,0 +1,8 @@
+"0","ind <- order(schorgast$W3)"
+"0","revind <- rev(ind)"
+"0","W3_sortiert <- schorgast[revind, ]"
+"0",""
+"0","# in R, it is also possible to combine these steps"
+"0","W3_sortiert <- schorgast[rev(order(schorgast$W3)), ]"
+"0",""
+"0","head(W3_sortiert)"

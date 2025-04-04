@@ -1,0 +1,2 @@
+"0","tracer <- read.csv(""data/tracer.csv"")"
+"0","head(tracer, 4)"

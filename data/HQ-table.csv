@@ -1,0 +1,8 @@
+Bezeichnung,Erklaerung
+NNQ,Niedrigste Niedrigwasserabfluss seit Beobachtungsbeginn
+NQ,Niedrigwasserabfluss. Niedrigster Wert einer Jahresreihe
+MNQ,Mittelwert des NQ
+MQ,Mittlere Abfluss. Arithmetische Mittel aller Beobachtungen
+MHQ,Mittlerer Hochwasserabfluss. Mittelwert des HQ
+HQ,Hochwasserabfluss. Oberer Wert einer Jahresreihe
+HHQ,Hoechster Hochwasserabfluss. Oberster bislang beobachteter Wert
