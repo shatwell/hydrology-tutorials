@@ -1,1 +1,5 @@
 /.quarto/
+/qmd/*.html
+/qmd/*.pdf
+/figs/tracer.pptx
+/qmd/*_files/
