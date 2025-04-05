@@ -1,0 +1,118 @@
+---
+title: "Einführung in R"
+subtitle: "Hydrologie und Wasserbau - Übung 01" 
+author: "Tom Shatwell"
+date: "02 April 2025"
+format: html
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, options, eval=TRUE, echo = FALSE}
+showcommands <- FALSE
+```
+
+# Einführung
+
+In dieser Übung werden Sie Ihre ersten Schritte im Programmieren mit R machen. Das Ziel ist, dass Sie lernen, einfache Berechnungen in R durchzuführen und einfache Visualisierungen von Daten zu erstellen. Gehen Sie zuerst durch die online R-Einführung [Erste Schritte mit R](https://tpetzoldt.github.io/elements-de/tutorials/s1-introductory-r-session.html) von [Thomas Petzoldt](https://tu-dresden.de/bu/umwelt/hydro/hydrobiologie/limnologie/die-professur/beschaeftig/thomas-petzoldt) am [Institut für Hydrobiologie der TU-Dresden](https://tu-dresden.de/bu/umwelt/hydro/hydrobiologie).
+
+Aufgabe 1 besteht darin, den Abflussbeiwert für ein kleines Einzugsgebiet zu berechnen. Hierbei müssen Sie einige Daten in R eingeben und anschließend einfache Berechnungen durchführen, wie zum Beispiel das Bestimmen des Abflussvolumens und das Umrechnen von Einheiten. Aufgabe 2 besteht darin, die Daten mithilfe der Plot-Funktion von R grafisch darzustellen.
+
+# Aufgabenstellung
+
+Gegeben sind Pegelaufzeichnungen von 2 Pegeln (Pegel A und Pegel B) im Einzugsgebiets des Musterbachs. Die Größe des Einzugsgebiets am Pegel B beträgt ($A = 143,7~[km^2]$). Die Pegelaufzeichnungen zeigen eine Hochwasserwelle nach einem Niederschlagsereignis von $h_N=14~[mm]$ bei Stunde 0. Aufgrund von Wartungsarbeiten am Pegel A mussten die Durchflussmessungen ($Q$ in $[m^{3}s^{-1}]$) unterbrochen werden. Am Pegel B wurden die Messungen unterdessen durchgehend fortgeführt.
+
+![Einzugsgebiet des Musterbachs mit zwei Pegeln](../figs/EZG-Musterbach.png){.left width="80%"}
+
+| Stunde | Pegel A $(m^{3}s^{-1})$ | Pegel B $(m^{3}s^{-1})$ |
+|--------|-------------------------|-------------------------|
+| 1      | 3,1                     | 11,3                    |
+| 2      | 3,2                     | 12,4                    |
+| 3      |                         | 13,3                    |
+| 4      |                         | 17,2                    |
+| 5      |                         | 31,2                    |
+| 6      | 17,1                    | 42,8                    |
+| 7      | 18,3                    | 46,7                    |
+| 8      | 14,8                    | 38,3                    |
+| 9      | 7,6                     | 22,5                    |
+| 10     | 4,9                     | 17,2                    |
+|        |                         |                         |
+
+# Aufgabe 1
+
+(a) Erstellen Sie drei Vektoren (mit den Namen `Stunde`, `pegelA`, `pegelB`), die jeweils die Werte in den Spalten der Tabelle enthalten. Verwenden Sie dazu die Funktion `c()`. Fehlende Werte geben Sie mit `NA` (= not available) an.
+
+```{r, def-pegelA-pegelB, eval=TRUE, echo=showcommands}
+Stunde <- 1:10
+pegelA <- c(3.1, 3.2, NA, NA, NA, 17.1, 18.3, 14.8, 7.6, 4.9)
+pegelB <- c(11.3, 12.4, 13.3, 17.2, 31.2, 42.8, 46.7, 38.3, 22.5, 17.2)
+```
+
+```{r, print-pegel, eval=TRUE, echo=TRUE}
+Stunde
+pegelA
+pegelB
+```
+
+(b) Berechnen Sie für das Ereignis den Abflussvolumen $V$ $[m^3]$ am Pegel B. Dazu können Sie die Abflusswerte $Q$ in $[m^3 s^{-1}]$ für jede Stunde mit der Dauer (eine Stunde = $3600 [s]$) multipliziern und über die 10 Stunden des Ereignisses aufsummieren.
+
+```{r,calcV, eval = showcommands, echo = showcommands}
+V <- sum(pegelB) * 3600
+
+V
+```
+
+(c) Berechnen Sie den Abfluss $h_A = \frac{V}{A}$ in Einheiten von $[mm]$. Achten Sie auf die Einheiten. Sie müssen in der Gleichung konsistent sein. Das heisst, rechnen Sie am Besten die Fläche des Einzugsgebietes $A$ in $[m^2]$ um. Dann ist das die Einheit von $h_A$ auch $[m]$, die Sie anschliessend in $[mm]$ umrechnen müssen.
+
+```{r,calcHA, eval = showcommands, echo = showcommands}
+hN <- 14 # (mm)
+A <- 143.7 # (km2)
+hA <- V / (A * 1000000) * 1000
+
+hN
+hA
+```
+
+(d) Berechnen Sie den Abflusskoeffizient $\alpha = \frac{h_A}{h_N}$. Wieviel Prozent des Niederschlags ist tatsächlich abgeflossen?
+
+```{r, calc-alpha, eval = showcommands, echo = showcommands}
+alpha <- hA / hN
+
+alpha
+```
+
+# Aufgabe 2
+
+(a) Stellen Sie die Zeitreihe `pegelB` in einem Diagramm dar, wobei die uhrzeit (`Stunde`) die x-Achse ist. Verwenden Sie dazu die Funktion `plot()`. Setzen Sie die Skala der y-Achse zwischen 0 und 50 mit dem Argument `ylim = c(0, 50)`. Setzen Sie das Argument `type = "o"`, damit sowohl die Datenpunkte als auch die Linien sichtbar sind. Sie können auch Achsenbeschriftungen mit `xlab = "X-Titel"` und `ylab = "Y-Titel"`. Ihr Plot sollte ungefähr so aussehen:
+
+```{r, plot-pegel, eval=TRUE, echo = showcommands}
+plot(Stunde, pegelB, ylim = c(0, 50), type = "o", 
+     xlab = "Stunde", ylab = "Abfluss")
+```
+
+(b) Nun als Vergleich, fügen Sie die Daten für `pegelA` hinzu. Verwenden Sie dazu die Funktion `lines()`. Um die Datenreihen unterscheiden zu können, ändern Sie die Farbe mit dem Argument `col = "blue"`, oder auch eine andere Farbe.
+
+```{r, plot-pegelB, eval=TRUE, echo = showcommands}
+plot(Stunde, pegelB, ylim = c(0, 50), type = "o", 
+     xlab = "Stunde", ylab = "Abfluss")
+lines(Stunde, pegelA, col = "blue", type = "o")
+```
+
+(c) Sie können eine Legende hinzufügen mit dem folgenden Befehl.
+
+```{r, add-legend, eval=FALSE, echo = !showcommands}
+legend("topleft", legend = c("Pegel A", "Pegel B"), 
+       col = c("blue", "black"), lwd = 1, pch = 1)
+```
+
+```{r, plot-pegelB-legend, eval=TRUE, echo = showcommands}
+plot(Stunde, pegelB, ylim = c(0, 50), type = "o", 
+     xlab = "Stunde", ylab = "Abfluss")
+lines(Stunde, pegelA, col = "blue", type = "o")
+legend("topleft", legend = c("Pegel A", "Pegel B"), 
+       col = c("blue", "black"), lwd = 1, pch = 1)
+
+```

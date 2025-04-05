@@ -1,0 +1,31 @@
+{
+    "id": "4E97C31F",
+    "path": "~/Teaching/Hydrologie-wasserbau/hydrologie-uebungen/qmd/uebung5_en.qmd",
+    "project_path": "qmd/uebung5_en.qmd",
+    "type": "quarto_markdown",
+    "hash": "94027564",
+    "contents": "",
+    "dirty": false,
+    "created": 1743802812515.0,
+    "source_on_save": false,
+    "relative_order": 4,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "3911:1690",
+        "cursorPosition": "31,17",
+        "scrollLine": "30"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1743849871,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1743849871411,
+    "read_only": false,
+    "read_only_alternatives": []
+}

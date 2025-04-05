@@ -1,0 +1,31 @@
+{
+    "id": "DCDE2736",
+    "path": "~/Teaching/Hydrologie-wasserbau/hydrologie-uebungen/qmd/uebung4.qmd",
+    "project_path": "qmd/uebung4.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1743802808643.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "cursorPosition": "20,0",
+        "scrollLine": "0",
+        "rmdVisualModeLocation": "1674:570.6666870117188",
+        "rmdVisualCollapsedChunks": ""
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1743849536,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1743849536295,
+    "read_only": false,
+    "read_only_alternatives": []
+}
