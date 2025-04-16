@@ -1,3 +1,0 @@
-"0","elbe <- read.csv(""data/elbe.csv"")"
-"0","elbe$date <- as.POSIXct(elbe$date, tz=""UTC"")"
-"0","plot(discharge~date, data = elbe, type = ""l"")"

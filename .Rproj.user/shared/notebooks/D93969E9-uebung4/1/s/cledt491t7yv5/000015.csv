@@ -1,6 +1,0 @@
-"0","#| echo: false"
-"0","#| tbl-cap: ""Kenngrößen des Abflusses"""
-"0",""
-"0","library(readr)"
-"0","tabdata <- read.csv(""data/HQ-table.csv"")"
-"0","knitr::kable(tabdata)"

@@ -1,5 +1,0 @@
-"0","library(readr)     # modernized functions to read rectangular data like csv"
-"0","library(dplyr)     # the most essential tidyverse packages"
-"0","library(tidyr)     # contains for example pivot tables"
-"0","library(lubridate) # a tidyverse package for dates"
-"0","library(ggplot2)   # high level plotting with the grammar of graphics"

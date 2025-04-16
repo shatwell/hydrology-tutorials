@@ -1,5 +1,0 @@
-"0","nzeilen <- nrow(W3_sortiert)"
-"0",""
-"0","W3_sortiert$wahrscheinlichkeit <- (1 : nzeilen) / nzeilen"
-"0",""
-"0","plot(W3~wahrscheinlichkeit, data = W3_sortiert, type = ""l"")"

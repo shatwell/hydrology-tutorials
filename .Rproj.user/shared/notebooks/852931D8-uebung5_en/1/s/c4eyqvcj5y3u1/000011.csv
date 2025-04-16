@@ -1,3 +1,0 @@
-"0","plot(W2~Q2, schorgast, main=""Station 2"","
-"0","     xlab = expression(Abfluss~(m^3~s^-1)),"
-"0","     ylab = ""Wasserstand (cm)"")"

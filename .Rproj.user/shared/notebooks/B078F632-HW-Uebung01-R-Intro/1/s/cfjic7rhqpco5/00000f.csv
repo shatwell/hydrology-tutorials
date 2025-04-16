@@ -1,2 +1,0 @@
-"0","plot(Stunde, pegelB, ylim = c(0, 50), type = ""o"", "
-"0","     xlab = ""Stunde"", ylab = ""Abfluss"")"

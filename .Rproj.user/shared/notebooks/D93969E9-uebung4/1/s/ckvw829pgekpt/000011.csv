@@ -1,3 +1,0 @@
-"0","ggplot(data = elbe) +"
-"0","  geom_line(aes(x = date, y = discharge))"
-"0",""

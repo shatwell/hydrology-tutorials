@@ -3,7 +3,7 @@ title: "Einführung in R"
 subtitle: "Hydrologie und Wasserbau - Übung 01" 
 author: "Tom Shatwell"
 date: "02 April 2025"
-format: html
+format: pdf
 editor: visual
 ---
 
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r, options, eval=TRUE, echo = FALSE}
-showcommands <- FALSE
+showcommands <- TRUE
 ```
 
 # Einführung

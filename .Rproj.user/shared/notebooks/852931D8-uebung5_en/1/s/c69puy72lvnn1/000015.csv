@@ -1,3 +1,0 @@
-"0",""
-"0","reg1 <- lm(sum2 ~ sum1)"
-"0","abline(reg1, col = ""red"", lwd = 2)"

@@ -27,9 +27,9 @@ Das Ziel ist, Sie mit einigen statistischen Methoden vertraut zu machen, die hä
 
 ## Der Datensatz
 
-Der Datensatz stammt von zwei Bächen, die etwa 30 km nördlich der Stadt Bayreuth in Bayern liegen. Die Daten wurden vom [Geoportal des Gewässerkundlichen Dienstes Bayern](https://www.gkd.bayern.de/) des [Bayerischen Landesamts für Umwelt](https://www.lfu.bayern.de/index.htm) heruntergeladen, das diese unter der [CC-BY 4.0 Lizenz](https://creativecommons.org/licenses/by/4.0/deed.en) bereitstellt, welche die weitere Nutzung der Daten regelt. Dem Bayerischen Landesamt für Umwelt wird herzlich für das Sammeln und Bereitstellen der Daten gedankt.
+Der Datensatz stammt von zwei Bächen, die etwa 30 km nördlich der Stadt Bayreuth in Bayern liegen. Die Daten wurden vom [Geoportal des Gewässerkundlichen Dienstes Bayern](https://www.gkd.bayern.de/) des [Bayerischen Landesamts für Umwelt](https://www.lfu.bayern.de/index.htm) heruntergeladen, das diese unter der [CC-BY 4.0 Lizenz](https://creativecommons.org/licenses/by/4.0/deed.en) bereitstellt, welche die weitere Nutzung der Daten regelt. Dem Bayerischen Landesamt für Umwelt wird herzlich für das Sammeln und Bereitstellen der Daten gedankt. Bitte lesen Sie dazu die zusaetzlichen Informationen in der Datei [`readme-steinach-schorgast.txt`](https://github.com/shatwell/hydrology-tutorials/blob/main/data/readme-steinach-schorgast.txt). 
 
-Die Daten befinden sich in der Datei `schorgast_wasserstand_abfluss.csv` im Kursordner. Die Daten bestehen aus täglichen Messungen des Wasserstands (W) in cm über dem Pegelnullpunkt und des Abflusses (Q) in $\mathrm{m^3 s^{-1}}$ von drei Pegelstationen:
+Die Daten befinden sich in der Datei `schorgast_wasserstand_abfluss.csv` im Kursordner, bzw. [hier](https://github.com/shatwell/hydrology-tutorials/blob/main/data/schorgast_wasserstand_abfluss.csv). Die Daten bestehen aus täglichen Messungen des Wasserstands (W) in cm über dem Pegelnullpunkt und des Abflusses (Q) in $\mathrm{m^3 s^{-1}}$ von drei Pegelstationen:
 
 -   am Bach Schorgast in Wirsberg (Station 1)
 -   am Bach Untere-Steinach in Untersteinach (Station 2)
@@ -39,7 +39,7 @@ Die Daten befinden sich in der Datei `schorgast_wasserstand_abfluss.csv` im Kurs
 
 Die Überschriften W1-W3 und Q1-Q3 beziehen sich auf den Wasserstand und den Abfluss an den Stationen 1-3 entsprechend. Die ursprünglichen Daten wurden leicht modifiziert, indem sie auf denselben Zeitraum gekürzt wurden, und fehlende Abflussmessungen (Jan - Okt 1982) an Station 2 wurden basierend auf den Daten der beiden anderen Stationen geschätzt.
 
-Die Daten sind in dieser Form unter <https://> oder im Kursordner verfügbar. Zusätzliche Informationen zu den Daten sind in der Datei `readme-steinach-schorgast.txt` im Kursordner enthalten.
+Die Daten sind in dieser Form [hier](https://github.com/shatwell/hydrology-tutorials/blob/main/data/schorgast_wasserstand_abfluss.csv) oder im Kursordner verfügbar. Zusätzliche Informationen zu den Daten sind in der Datei `readme-steinach-schorgast.txt` im Kursordner enthalten.
 
 ## Pakete
 

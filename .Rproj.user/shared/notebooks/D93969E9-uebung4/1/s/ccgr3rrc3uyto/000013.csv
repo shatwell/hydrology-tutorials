@@ -1,3 +1,0 @@
-"0","HQ <- aggregate(discharge ~ jahr, data = elbe, FUN = max)"
-"0","MHQ <- mean(HQ$discharge)"
-"0","head(HQ)"

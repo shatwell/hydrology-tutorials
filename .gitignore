@@ -3,3 +3,5 @@
 /qmd/*.pdf
 /figs/tracer.pptx
 /qmd/*_files/
+/stuff/*
+.Rproj.user

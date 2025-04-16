@@ -19,12 +19,17 @@
     "uebung4.html": "195ad75a"
   },
   "qmd/HW-Uebung01-R-Intro.qmd": {
-    "HW-Uebung01-R-Intro.html": "574534f6"
+    "HW-Uebung01-R-Intro.html": "574534f6",
+    "HW-Uebung01-R-Intro.tex": "4cc13090"
   },
   "qmd/uebung5_de.qmd": {
     "uebung5_de.html": "fbb916a7"
   },
   "qmd/uebung5_en.qmd": {
     "uebung5_en.html": "638d4fe2"
+  },
+  "qmd/HW-Uebung02-Gebietsniederschlag.qmd": {
+    "HW-Uebung02-Gebietsniederschlag.html": "b4c3fd99",
+    "HW-Uebung02-Gebietsniederschlag.tex": "b5752398"
   }
 }
