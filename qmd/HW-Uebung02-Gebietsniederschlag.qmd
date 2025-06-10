@@ -1,9 +1,6 @@
 ---
-title: "HW-Uebung02-Gebietsniederschlag"
-subtitle: "Hydrologie und Wasserbau - Übung 02" 
-author: "Tom Shatwell"
-date: "16 April 2025"
-format: pdf
+title: "Gebietsniederschlag"
+format: html
 editor: source
 ---
 
@@ -16,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 showcommands <- FALSE
 ```
 
-# Einführung
+## Einführung
 
 In dieser Übung führen wir zunächst die Einführung in R fort.Gehen Sie zuerst durch die online R-Einführung [Erste Schritte mit R](https://tpetzoldt.github.io/elements-de/tutorials/s1-introductory-r-session.html) von [Thomas Petzoldt](https://tu-dresden.de/bu/umwelt/hydro/hydrobiologie/limnologie/die-professur/beschaeftig/thomas-petzoldt) am [Institut für Hydrobiologie der TU-Dresden](https://tu-dresden.de/bu/umwelt/hydro/hydrobiologie).
 
@@ -29,9 +26,9 @@ In diesem Tutorial bearbeiten Sie zwei grundlegende Arbeitsschritte im Bereich d
    Sie analysieren Zeitreihendaten einer Messstation und aggregieren diese auf eine gewünschte zeitliche Auflösung (z. B. Stunden). So erhalten Sie eine diskretisierte Darstellung des Niederschlagsverlaufs, die für weitere hydrologische Auswertungen genutzt werden kann.
 
 
-# Aufgabe 1: Gebietsniederschlag
+## Aufgabe 1: Gebietsniederschlag
 
-## A) Thiessen-Polygone
+### A) Thiessen-Polygone
 Gegeben ist ein Einzugsgebiet mit 7 Niederschlagsmessstationen (A - G). Sie wollen den Abfluss am Gebietsauslass schätzen, und benötigen den Gebietsniederschlag. Als Methode zur Abschätzung des Gebietsniederschlags haben Sie das Thiessen-Polygon-Verfahren gewählt.
 
 ![Einzugsgebiet mit Niederschlagsstationen](../figs/EZG-thiessen.PNG){.left width="80%"}
@@ -39,7 +36,7 @@ Gegeben ist ein Einzugsgebiet mit 7 Niederschlagsmessstationen (A - G). Sie woll
 
 **Zeichnen Sie in der Abbildung die Thiessen-Polygone für die Messstationen A bis G.**
 
-## B) Berechnung des gebietsgewichteten Niederschlags
+### B) Berechnung des gebietsgewichteten Niederschlags
 Sie haben inzwischen die Thiessen-Polygone und deren Teilflächen im Einzugsgebiet ermittelt (Tabelle unten). 
 
 | Messstation | Teilfläche ($km^2$) | Niederschlag (mm) |
@@ -104,14 +101,14 @@ NG
 ```
 
 
-## Aufgabe 2: Diskretisierung des Niederschlags
+### Aufgabe 2: Diskretisierung des Niederschlags
 
-#### Ziel
+##### Ziel
 In dieser Aufgabe lernen Sie, wie Sie **Niederschlagsdaten zeitlich diskretisieren**, also in gleichmäßige Zeitabschnitte (z. B. Stunden) unterteilen und aggregieren. Ziel ist es, aus den Zeitreihendaten stündliche Niederschlagssummen zu berechnen und diese zu visualisieren.
 
 ---
 
-## Schritt 1 – Notwendige R-Pakete laden
+### Schritt 1 – Notwendige R-Pakete laden
 
 Zunächst laden Sie die benötigten R-Pakete für Datenverarbeitung, Zeitformate und Visualisierung.  
 
@@ -134,7 +131,7 @@ install.packages(c("readr", "dplyr", "tidyr", "lubridate", "ggplot2"))
 
 ---
 
-## Schritt 2 – Arbeitsverzeichnis prüfen
+### Schritt 2 – Arbeitsverzeichnis prüfen
 
 Bevor Sie Daten einlesen, überprüfen Sie Ihr aktuelles Arbeitsverzeichnis:
 
@@ -146,7 +143,7 @@ Stellen Sie sicher, dass sich die Datei `Niederschlag_Station_A.csv` im korrekte
 
 ---
 
-## Schritt 3 – Niederschlagsdaten einlesen
+### Schritt 3 – Niederschlagsdaten einlesen
 
 Nun lesen Sie die CSV-Datei mit den Zeitreihendaten der Station A ein:
 
@@ -168,7 +165,7 @@ names(niederschlag)        # Spaltennamen anzeigen
 
 ---
 
-## Schritt 4 – Zeitstempel umwandeln & diskretisieren
+### Schritt 4 – Zeitstempel umwandeln & diskretisieren
 
 Die Spalte `zeit` ist vermutlich im Character-Format. Sie wird jetzt in ein Datums-Zeit-Format (`POSIXct`) umgewandelt:
 
@@ -191,7 +188,7 @@ tail(niederschlag)
 
 ---
 
-## Schritt 5 – Aggregation der Niederschlagswerte
+### Schritt 5 – Aggregation der Niederschlagswerte
 
 Jetzt werden die Niederschlagswerte für jede Stunde summiert:
 
@@ -210,9 +207,9 @@ tail(niederschlag_dskr, 8)
 
 ---
 
-## Schritt 6 – Visualisierung
+### Schritt 6 – Visualisierung
 
-### Variante 1: Einfache Balkengrafik mit `barplot()`
+#### Variante 1: Einfache Balkengrafik mit `barplot()`
 
 ```{r}
 barplot(height = niederschlag_dskr$N_mm, 
@@ -221,7 +218,7 @@ barplot(height = niederschlag_dskr$N_mm,
         main = "Beispielstation")
 ```
 
-### Variante 2: Elegante Darstellung mit `ggplot2`
+#### Variante 2: Elegante Darstellung mit `ggplot2`
 
 ```{r}
 ggplot(data = niederschlag_dskr, aes(x = zeit_diskret, y = N_mm)) +
@@ -234,7 +231,7 @@ ggplot(data = niederschlag_dskr, aes(x = zeit_diskret, y = N_mm)) +
 
 **Nun versuchen Sie den täglichen Niederschlag zu ermitteln, mit anderen Worten, ändern Sie den Zeitschritt der Diskretisierung von ```"hours"``` in ```"days"``` und plotten Sie die neuen Daten.**
 
-## Fazit
+### Fazit
 
 Sie haben gelernt, wie Sie Zeitstempel in R verarbeiten, Daten auf eine gewünschte zeitliche Auflösung (hier: Stunden) diskretisieren und anschließend visualisieren. Diese Methoden bilden eine Grundlage für die weitere hydrologische Analyse.
 

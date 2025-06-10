@@ -16,7 +16,8 @@
     "uebung5_de.html": "77edd2e6"
   },
   "qmd/uebung4.qmd": {
-    "uebung4.html": "195ad75a"
+    "uebung4.html": "195ad75a",
+    "uebung4.tex": "70c5ad24"
   },
   "qmd/HW-Uebung01-R-Intro.qmd": {
     "HW-Uebung01-R-Intro.html": "574534f6",
@@ -31,5 +32,27 @@
   "qmd/HW-Uebung02-Gebietsniederschlag.qmd": {
     "HW-Uebung02-Gebietsniederschlag.html": "b4c3fd99",
     "HW-Uebung02-Gebietsniederschlag.tex": "b5752398"
+  },
+  "qmd/uebung3_de.qmd": {
+    "uebung3_de.html": "462d4c76",
+    "uebung3_de.tex": "adf811c6"
+  },
+  "about_de.qmd": {
+    "about_de.html": "7daa4664"
+  },
+  "about_en.qmd": {
+    "about_en.html": "22420055"
+  },
+  "index_de.qmd": {
+    "index_de.html": "8ed9ed0a"
+  },
+  "index_en.qmd": {
+    "index_en.html": "82cab9f9"
+  },
+  "qmd/hydrologie-uebungen.qmd": {
+    "hydrologie-uebungen.html": "c16e063b"
+  },
+  "qmd/uebung4b-salztracer.qmd": {
+    "uebung4b-salztracer.html": "323f17a0"
   }
 }

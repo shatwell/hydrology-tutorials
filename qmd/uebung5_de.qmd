@@ -1,17 +1,14 @@
 ---
 title: "Auswertung Wasserstand und Abfluss"
-subtitle: "Hydrologie und Wasserbau - Übung 5" 
-author: "Tom Shatwell"
-date: "April 4, 2025"
 format: html
-editor: visual
+editor: source
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Einführung
+## Einführung
 
 In dieser Übung werden Sie Wasserstand- und Abflussdaten von drei hydrologischen Stationen an Bächen in Bayern auswerten. Die Aufgaben, die Sie durchführen werden, umfassen:
 
@@ -25,9 +22,9 @@ Die Aufgaben können alle durch Anpassung des im Beispiel gezeigten Codes oder d
 
 Das Ziel ist, Sie mit einigen statistischen Methoden vertraut zu machen, die häufig in der Hydrologie verwendet werden, den Umgang mit R zu üben und Ihnen einen Eindruck von der Arbeit mit echten hydrologischen Daten zu vermitteln.
 
-## Der Datensatz
+### Der Datensatz
 
-Der Datensatz stammt von zwei Bächen, die etwa 30 km nördlich der Stadt Bayreuth in Bayern liegen. Die Daten wurden vom [Geoportal des Gewässerkundlichen Dienstes Bayern](https://www.gkd.bayern.de/) des [Bayerischen Landesamts für Umwelt](https://www.lfu.bayern.de/index.htm) heruntergeladen, das diese unter der [CC-BY 4.0 Lizenz](https://creativecommons.org/licenses/by/4.0/deed.en) bereitstellt, welche die weitere Nutzung der Daten regelt. Dem Bayerischen Landesamt für Umwelt wird herzlich für das Sammeln und Bereitstellen der Daten gedankt. Bitte lesen Sie dazu die zusaetzlichen Informationen in der Datei [`readme-steinach-schorgast.txt`](https://github.com/shatwell/hydrology-tutorials/blob/main/data/readme-steinach-schorgast.txt). 
+Der Datensatz stammt von zwei Bächen, die etwa 30 km nördlich der Stadt Bayreuth in Bayern liegen. Die Daten wurden vom [Geoportal des Gewässerkundlichen Dienstes Bayern](https://www.gkd.bayern.de/) des [Bayerischen Landesamts für Umwelt](https://www.lfu.bayern.de/index.htm) heruntergeladen, das diese unter der [CC-BY 4.0 Lizenz](https://creativecommons.org/licenses/by/4.0/deed.en) bereitstellt, welche die weitere Nutzung der Daten regelt. Dem Bayerischen Landesamt für Umwelt wird herzlich für das Sammeln und Bereitstellen der Daten gedankt. Bitte lesen Sie dazu die zusaetzlichen Informationen in der Datei [`readme-steinach-schorgast.txt`](https://github.com/shatwell/hydrology-tutorials/blob/main/data/readme-steinach-schorgast.txt).
 
 Die Daten befinden sich in der Datei `schorgast_wasserstand_abfluss.csv` im Kursordner, bzw. [hier](https://github.com/shatwell/hydrology-tutorials/blob/main/data/schorgast_wasserstand_abfluss.csv). Die Daten bestehen aus täglichen Messungen des Wasserstands (W) in cm über dem Pegelnullpunkt und des Abflusses (Q) in $\mathrm{m^3 s^{-1}}$ von drei Pegelstationen:
 
@@ -41,7 +38,7 @@ Die Überschriften W1-W3 und Q1-Q3 beziehen sich auf den Wasserstand und den Abf
 
 Die Daten sind in dieser Form [hier](https://github.com/shatwell/hydrology-tutorials/blob/main/data/schorgast_wasserstand_abfluss.csv) oder im Kursordner verfügbar. Zusätzliche Informationen zu den Daten sind in der Datei `readme-steinach-schorgast.txt` im Kursordner enthalten.
 
-## Pakete
+### Pakete
 
 Laden Sie zuerst die notwendigen Pakete für Ihre neue R-Session.
 
@@ -56,7 +53,7 @@ library(ggplot2)   # high level plotting with the grammar of graphics
 ```{r, packages, eval=TRUE}
 ```
 
-# Importieren und Visualisieren der Daten
+## Importieren und Visualisieren der Daten
 
 Bevor Daten in R importiert werden, ist es hilfreich, das aktuelle Arbeitsverzeichnis mit `getwd()` zu überprüfen und die Datei in einem Texteditor zu öffnen, um die Struktur der Daten zu prüfen. Beispielsweise: Welche Spalten gibt es? Wie sind sie formatiert (z. B. Datumsangaben, Dezimalzahlen, Text)? Wie sind die Spalten getrennt? Gibt es zusätzliche Zeilen oberhalb der Daten? Enthalten die Überschriften Sonderzeichen, die in R Probleme verursachen könnten? Es kann einfacher sein, solche Probleme manuell zu beheben, bevor die Datei importiert wird.
 
@@ -88,13 +85,13 @@ plot(Q1 ~ Datum, data = schorgast, type = "l")
 
 Falls die Spalte `Datum` nicht vom Typ (class) `Date` ist, werden Sie Schwierigkeiten haben, die Daten zu plotten.
 
-## Aufgabe 1
+### Aufgabe 1
 
 -   Plotten Sie die Ganglinien für den Wasserstand (W) und den Abfluss (Q) für die Stationen 1 bis 3.
 -   Gibt es fehlende Daten?
 -   Welche Station hat den größten Abfluss? Warum?
 
-# Überprüfung der Homogenität der Daten
+## Überprüfung der Homogenität der Daten
 
 Viele statistische Tests und Analysen von hydrologischen Daten setzen voraus, dass die Daten homogen sind. Daten sind homogen, wenn sie konsistent und stationär sind und keine allmählichen oder plötzlichen Änderungen aufweisen, die oft visuell schwer zu erkennen sind. Solche Änderungen könnten durch eine Veränderung der Landnutzung im Einzugsgebiet oder durch eine Änderung der Messmethodik verursacht werden. Eine schnelle und einfache Möglichkeit, dies zu überprüfen, ist der **Doppelsummentest**, der zusätzliche hydrologische Zeitreihen aus einem nahegelegenen Einzugsgebiet erfordert. Dieser Test deckt jedoch keine Inhomogenitäten auf, die beide Einzugsgebiete gleichzeitig betreffen, wie zum Beispiel den Klimawandel.
 
@@ -129,17 +126,17 @@ abline(reg2, col = "red", lwd = 2)
 
 Die Linie ist vielleicht nicht so gerade, wie sie zunächst erschien.
 
-## Aufgabe 2
+### Aufgabe 2
 
 -   Was bedeutet die Abweichung von der Linie im obigen Plot?
 -   Was könnte in den Einzugsgebieten der Stationen 1 und 2 passiert sein, um diese Abweichung zu erklären?
 -   Verwenden Sie Doppelsummenplots, um die anderen Stationen zu vergleichen, d. h. Station 1 und 3 sowie Station 2 und 3. Erklären Sie Ihre Ergebnisse.
 
-# Wasserstand-Abfluss-Beziehungen
+## Wasserstand-Abfluss-Beziehungen
 
 Hydrologische Stationen messen den Abfluss nicht direkt, sondern den Wasserstand. Schluesselkurven (Wasserstand-Abfluss-Beziehungen) werden verwendet, um den Abfluss aus dem Wasserstand zu berechnen. Diese Beziehungen werden definiert, indem der Abfluss bei verschiedenen Wasserständen gemessen und anschließend eine Kurve an die Messwerte angepasst wird. Die Wasserstand-Abfluss-Beziehung hängt vom Querschnitt des Flussbettes ab. Wenn sich der Querschnitt verändert, gilt die Wasserstand-Abfluss-Beziehung nicht mehr und muss neu berechnet werden.
 
-## Aufgabe 3
+### Aufgabe 3
 
 -   Plotten Sie die Wasserstand-Abfluss-Beziehungen für die drei Stationen. Typischerweise wird der Wasserstand auf der (vertikalen) y-Achse und der Abfluss auf der x-Achse dargestellt. Die Plots sollten ungefähr so aussehen:
 
@@ -163,7 +160,7 @@ ggplot(data = schorgast) +
 
 -   Welche hydrologischen Prozesse könnten diese Veränderungen verursacht haben?
 
-# Dauerlinien
+## Dauerlinien
 
 Dauerlinien zeigen (wenn sie aus täglichen Abflussdaten erstellt werden), wie oft ein bestimmter Wasserstand oder Abfluss innerhalb eines bestimmten Zeitraums überschritten wird. Zum Beispiel: An wie vielen Tagen pro Jahr wird eine Abflussrate von 1,5 $\mathrm{m^3 s^{-1}}$ überschritten? Sie zeigen die Überschreitungswahrscheinlichkeit eines gemessenen Wertes.
 
@@ -194,13 +191,13 @@ plot(W3~wahrscheinlichkeit, data = W3_sortiert, type = "l")
 
 Nun können Sie die Wahrscheinlichkeit berechnen, dass ein bestimmter Wasserstand an einem Tag überschritten wird. Versuchen Sie, dies manuell zu tun, indem Sie die Wahrscheinlichkeit aus der Kurve abschätzen. Sie können die Funktion `abline()` verwenden, um Linien als Orientierungshilfe zum Plot hinzuzufügen. Zum Beispiel fügt `abline(h = 200)` eine horizontale Linie bei y=200 hinzu, und `abline(v = c(0.2, 0.4, 0.6))` fügt vertikale Linien bei x = 0.2, x = 0.4 und x = 0.6 hinzu.
 
-## Aufgabe 4
+### Aufgabe 4
 
 -   Schätzen Sie mit der oben beschriebenen Methode die Überschreitungswahrscheinlichkeit eines Wasserstands von 148 cm an Station 3.
 
 -   Welcher Wasserstand an Station 3 wird an 10% der Tage (d. h. mit einer Wahrscheinlichkeit von 0,1) überschritten?
 
-# Summenkurven
+## Summenkurven
 
 Die Summenkurve stellt die integrierte Ganglinie (Volumen) der Abflüsse dar. Sie beginnt gewöhnlich bei Null und endet bei einem Wert, der als Abfluss- oder Wasservolumen der betrachteten Periode T bezeichnet wird. Summenkurven sind wichtig für das Management von Wasserspeichern und Stauseen. Die Steigung der Kurve entspricht dem Abfluss.
 
@@ -241,7 +238,7 @@ Nun können wir die Summenkurve für ein beliebiges Jahr plotten, hier für 2009
 plot(summeQ1 ~ Datum, data = schorgast, subset = jahr==2009, type = "l")
 ```
 
-## Aufgabe 5
+### Aufgabe 5
 
 -   Plotten Sie die Summenkurve für Station 2 (Q2) für das Jahr 2006. Zuerst müssen Sie die kumulative Summe berechnen, wie oben für Station 1 (Q1) gezeigt.
 
@@ -270,7 +267,7 @@ ggplot(data = schorgast_sub) +
   theme_minimal()
 ```
 
-## Aufgabe 6
+### Aufgabe 6
 
 Betrachten Sie die obigen Plots:
 
@@ -278,9 +275,9 @@ Betrachten Sie die obigen Plots:
 -   Welches war das trockenste Jahr?
 -   Welches Jahr hatte den nassesten Herbst? Denken Sie daran, dass steile Teile der Kurve den höchsten Abfluss anzeigen.
 
-# Abschätzung des Abflusses an nicht gemessenen Standorten
+## Abschätzung des Abflusses an nicht gemessenen Standorten
 
-## Verwendung der Einzugsgebietsflächen
+### Verwendung der Einzugsgebietsflächen
 
 Hydrologische Pegelstationen befinden sich selten genau an dem Ort, den Sie für Ihr Bauprojekt benötigen. In solchen Fällen ist es notwendig, den Abfluss von einem anderen Standort abzuschätzen oder anzupassen. Zum Beispiel müssen Sie möglicherweise den Abfluss an Punkt B abschätzen, indem Sie die Daten von Station 2 verwenden, die die nächste Station ist.
 
@@ -313,13 +310,13 @@ plot(QB ~ Datum, schorgast, subset = jahr == 1989,
      type = "l", col = "red", main = "QB - 1989")
 ```
 
-## Aufgabe 7
+### Aufgabe 7
 
 -   Verwenden Sie die in der Tabelle angegebenen Einzugsgebietsflächen, um den Abfluss an Punkt A basierend auf den gemessenen Abflüssen an Station 1 abzuschätzen. Fügen Sie diese Daten dem `data.frame` `schorgast` als neue Spalte mit dem Namen `QA` hinzu.
 
 -   Sie könnten auch eine der anderen Stationen verwenden. Welche halten Sie für am besten geeignet?
 
-## Verwendung eines Regressionsansatzes
+### Verwendung eines Regressionsansatzes
 
 Vielleicht haben Sie bereits einige Abflussdaten an dem Standort, der Sie interessiert. In diesem Fall können Sie die Korrelation zwischen dem Abfluss an Ihrem Interessensstandort und den gemessenen Abflüssen an einem anderen Standort mit einer Pegelstation nutzen.
 
@@ -361,7 +358,7 @@ legend("topright", c("measured", "predicted"), lty=1, col = c("black", "red"))
 
 Gar nicht so schlecht.
 
-## Aufgabe 8 (Hacker-Aufgabe - optional)
+### Aufgabe 8 (Hacker-Aufgabe - optional)
 
 -   führen Sie den Befehl `plot(reg)` aus. Sie müssen immer eine Taste drücken, um den nächsten Plot anzuzeigen. Was zeigen diese Plots? Wir können sie in der Gruppe diskutieren.
 

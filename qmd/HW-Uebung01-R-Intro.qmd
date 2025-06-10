@@ -1,10 +1,8 @@
 ---
-title: "Einführung in R"
-subtitle: "Hydrologie und Wasserbau - Übung 01" 
-author: "Tom Shatwell"
-date: "02 April 2025"
-format: pdf
-editor: visual
+title: "Abfluss berechnen und visualisieren"
+subtitle: "Erste Schritte mit R" 
+format: html
+editor: source
 ---
 
 ```{r setup, include=FALSE}
@@ -15,13 +13,13 @@ knitr::opts_chunk$set(echo = TRUE)
 showcommands <- TRUE
 ```
 
-# Einführung
+## Einführung
 
 In dieser Übung werden Sie Ihre ersten Schritte im Programmieren mit R machen. Das Ziel ist, dass Sie lernen, einfache Berechnungen in R durchzuführen und einfache Visualisierungen von Daten zu erstellen. Gehen Sie zuerst durch die online R-Einführung [Erste Schritte mit R](https://tpetzoldt.github.io/elements-de/tutorials/s1-introductory-r-session.html) von [Thomas Petzoldt](https://tu-dresden.de/bu/umwelt/hydro/hydrobiologie/limnologie/die-professur/beschaeftig/thomas-petzoldt) am [Institut für Hydrobiologie der TU-Dresden](https://tu-dresden.de/bu/umwelt/hydro/hydrobiologie).
 
 Aufgabe 1 besteht darin, den Abflussbeiwert für ein kleines Einzugsgebiet zu berechnen. Hierbei müssen Sie einige Daten in R eingeben und anschließend einfache Berechnungen durchführen, wie zum Beispiel das Bestimmen des Abflussvolumens und das Umrechnen von Einheiten. Aufgabe 2 besteht darin, die Daten mithilfe der Plot-Funktion von R grafisch darzustellen.
 
-# Aufgabenstellung
+## Aufgabenstellung
 
 Gegeben sind Pegelaufzeichnungen von 2 Pegeln (Pegel A und Pegel B) im Einzugsgebiets des Musterbachs. Die Größe des Einzugsgebiets am Pegel B beträgt ($A = 143,7~[km^2]$). Die Pegelaufzeichnungen zeigen eine Hochwasserwelle nach einem Niederschlagsereignis von $h_N=14~[mm]$ bei Stunde 0. Aufgrund von Wartungsarbeiten am Pegel A mussten die Durchflussmessungen ($Q$ in $[m^{3}s^{-1}]$) unterbrochen werden. Am Pegel B wurden die Messungen unterdessen durchgehend fortgeführt.
 
@@ -41,7 +39,7 @@ Gegeben sind Pegelaufzeichnungen von 2 Pegeln (Pegel A und Pegel B) im Einzugsge
 | 10     | 4,9                     | 17,2                    |
 |        |                         |                         |
 
-# Aufgabe 1
+## Aufgabe 1
 
 (a) Erstellen Sie drei Vektoren (mit den Namen `Stunde`, `pegelA`, `pegelB`), die jeweils die Werte in den Spalten der Tabelle enthalten. Verwenden Sie dazu die Funktion `c()`. Fehlende Werte geben Sie mit `NA` (= not available) an.
 
@@ -84,7 +82,7 @@ alpha <- hA / hN
 alpha
 ```
 
-# Aufgabe 2
+## Aufgabe 2
 
 (a) Stellen Sie die Zeitreihe `pegelB` in einem Diagramm dar, wobei die uhrzeit (`Stunde`) die x-Achse ist. Verwenden Sie dazu die Funktion `plot()`. Setzen Sie die Skala der y-Achse zwischen 0 und 50 mit dem Argument `ylim = c(0, 50)`. Setzen Sie das Argument `type = "o"`, damit sowohl die Datenpunkte als auch die Linien sichtbar sind. Sie können auch Achsenbeschriftungen mit `xlab = "X-Titel"` und `ylab = "Y-Titel"`. Ihr Plot sollte ungefähr so aussehen:
 

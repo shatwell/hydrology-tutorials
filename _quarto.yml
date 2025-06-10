@@ -1,5 +1,32 @@
 project:
+  type: website
   title: "hydrologie-uebungen"
 
-editor: visual
+editor: source
 
+website:
+  title: "Hydrologie Übungen"
+  navbar:
+    left:
+      - href: index_de.qmd
+        text: Start
+      - href: qmd/HW-Uebung01-R-Intro.qmd
+        text: Abfluss
+      - href: qmd/HW-Uebung02-Gebietsniederschlag.qmd
+        text: Gebietsniederschlag
+      - href: qmd/uebung3_de.qmd
+        text: Infiltration
+      - href: qmd/uebung4.qmd
+        text: Abflusskennwerte
+      - href: qmd/uebung4b-salztracer.qmd
+        text: Salztracer
+      - href: qmd/uebung5_de.qmd
+        text: Abflussauswertung
+      - href: about_de.qmd
+        text: Über
+
+
+format:
+  html:
+    theme: cosmo
+    toc: true

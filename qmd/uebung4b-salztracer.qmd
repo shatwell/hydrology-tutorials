@@ -36,7 +36,7 @@ Um den Abfluss im Kaltenbach zu berechnen, wurde eine Tracer-Messung durchgefüh
 
 Für die ersten 10 Minuten wurden die Hintergundkonzentration C0 gemessen. Ab den 10. Minute wurde der erste Anstieg in der Konzentration registriert. Die Konzentration hat den Hintergrundkonzentration nach 20 Minuten vollständig wieder erreicht.
 
-![Tracer addition measurement](figs/tracer.png)
+![Tracer addition measurement](figs/tracer1.png)
 
 **Berechnen Sie den Abfluss.**
 

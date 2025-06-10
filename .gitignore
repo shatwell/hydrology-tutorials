@@ -4,4 +4,8 @@
 /figs/tracer.pptx
 /qmd/*_files/
 /stuff/*
+/R/*
+/qmd/*.log
+/qmd/*.tex
+/qmd/*.aux
 .Rproj.user

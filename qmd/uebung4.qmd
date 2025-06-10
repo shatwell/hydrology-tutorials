@@ -1,28 +1,26 @@
 ---
-title: "Hydrologie und Wasserbau Uebung4 - Abfluss"
+title: "Abflusskennwerte"
 format: html
-editor: visual
+editor: source
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Einführung
+## Einführung
 
-In der ersten Aufgabe werden Sie die Hydrologie der Elbe charakterisieren. Die Schritte umfassen zunächst das Importieren der Daten in R und dann die Visualisierung der Daten. Anschließend berechnen Sie aussagekräftige statistische Kenngrößen, einschließlich NNQ, NQ, MNQ, MQ, MHQ, HQ und HHQ.
-
-In der zweiten Aufgabe werden Sie den Abfluss in einem Bach anhand einer Tracermessung berechnen.
+In dieser Aufgabe werden Sie die Hydrologie der Elbe charakterisieren. Die Schritte umfassen zunächst das Importieren der Daten in R und dann die Visualisierung der Daten. Anschließend berechnen Sie aussagekräftige statistische Kenngrößen, einschließlich NNQ, NQ, MNQ, MQ, MHQ, HQ und HHQ.
 
 Die Übungen erfordern Ihre R-Kenntnisse, und Sie werden wahrscheinlich mit der Syntax Schwierigkeiten haben. Verwenden Sie das Spickzettel, fragen Sie mich um Hilfe oder stellen Sie ChatGPT gezielte Fragen, falls Sie nicht weiterkommen, zum Beispiel: „Ich versuche, Daten in R einzulesen. Warum funktioniert dieser Code nicht: `<Code hier angeben>`?"
 
 Diese Übung basiert auf einer ähnlichen Übung von Thomas Petzoldt (TU-Dresden, <https://github.com/tpetzoldt>). Die ursprüngliche Übung finden Sie hier: <https://tpetzoldt.github.io/element-labs/qmd/03-discharge-elbe.html>. Diese Arbeit wird dankend anerkannt.
 
-## Der Datensatz
+### Der Datensatz
 
 Der Datensatz besteht aus täglichen Messungen des Abflusses der Elbe in Dresden (tägliche Abflusssumme in $\mathrm{m^3 s^{-1}}$). Die Daten wurden freundlicherweise vom deutschen Bundesanstalt für Gewässerkunde (BfG) zur Verfügung gestellt. Bitte lesen Sie die Informationsdatei elbe_info.txt über die Datenquelle und das Copyright, bevor Sie die Datei data.csv herunterladen. Der Datensatz ist dann im Kursordner auf ILIAS oder verfügbar unter https://github.com/tpetzoldt/datasets/blob/main/data/.)
 
-## Packages
+### Packages
 
 Sind alle nötigen Packages installiert, müssen sie einmal in jedem neuen R-Session geladen werden.
 
@@ -37,7 +35,7 @@ library(ggplot2)   # high level plotting with the grammar of graphics
 ```{r, packages, eval=FALSE}
 ```
 
-# Aufgabe 1: Elbe
+## Aufgabe: Elbe
 
 In dieser Übung werden Sie Abflussdaten der Elbe in R einlesen, die Daten visualisieren und die wichtigen statistischen Kenngrößen NNQ, NQ, MNQ, MQ, MHQ, HQ und HHQ berechnen.
 
@@ -50,7 +48,7 @@ tabdata <- read.csv("../data/HQ-table.csv")
 knitr::kable(tabdata)
 ```
 
-## A) Daten einlesen
+### A) Daten einlesen
 
 Bevor Sie die Elbeabflussdaten `elbe.csv` einlesen, schauen Sie sich die Daten erst mit einem Texteditor an. Gibt es Header? Sind die Spaltenüberschriften in Ordnung oder enthalten sie Sonder- oder Leerzeichen? Welche Formate haben die Daten?
 
@@ -62,7 +60,7 @@ Geben Sie mit dem Zuweisungsoperator den eingelesenen Daten einen Namen (z.B. "e
 
 Wenn Sie Schwierigkeiten haben, die Daten einzulesen, können Sie natürlich die Daten manuell einlesen, und zwar in RStudio über dem Menüpunkt "File/Datei" --\> "Import dataset".
 
-## B) Visualisieren Sie die Daten
+### B) Visualisieren Sie die Daten
 
 Schauen Sie sich die Daten in R an. Nutzen Sie Funktionen wie `View(elbe)`, `head(elbe)`, `tail(elbe)`, `str(elbe)`, oder klicken Sie auf `elbe` in Ihrem Environment im Panel oben rechts in RStudio.
 
@@ -99,7 +97,7 @@ ggplot(data = elbe) +
 
 ```
 
-## C) Berechnen Sie NNQ, MQ, und HHQ
+### C) Berechnen Sie NNQ, MQ, und HHQ
 
 Die Kenngrößen, die sich aus der ganzen Zeitreihe ableiten, lassen sich relativ einfach berechnen. Hierzu benutzen Sie Funktionen wie `min()`, `max()`, `mean()` oder `summary()`. Als Argument (das was innerhalb der Klammern kommt) geben Sie den Abfluss an
 
@@ -120,7 +118,7 @@ elbe[which.max(elbe$discharge), "date"]
 
 ```
 
-## D) Berechnen Sie NQ, MNQ, MHQ, HQ bezogen auf die Kalenderjahre
+### D) Berechnen Sie NQ, MNQ, MHQ, HQ bezogen auf die Kalenderjahre
 
 NQ, MNQ, MHQ, HQ sind etwas schwieriger als HHQ, MQ und NNQ, weil sie sich nicht auf die gesamte Reihe beziehen, sondern müssen aus Teilmengen der Daten (die einzelnen Jahre) berechnet werden.
 
@@ -172,74 +170,3 @@ MHQ
 
 -   Berechnen Sie NQ, MNQ, MHQ, HQ analog zur obigen Aufgabe. Wenden Sie wieder die Funktionen `mean()`, `max()`, `min()`, oder `summary()`, auf die neuen data.frames `jahresmittel` oder wie Sie sie genannt haben.
 
-# Aufgabe 2: Abflussberechnung mit Tracer-Messung:
-
-Um den Abfluss im Kaltenbach zu berechnen, wurde eine Tracer-Messung durchgeführt. 5 kg eines Tracers wurde im Bach zum Zeitpunkt t = 0 gekippt. An einer entsprechenden Stelle im Unterlauf (Komplettmischung des Tracers) wurde die Konzentration im Wasser ($\mathrm{kg m^{-3}}$) zeitlich hochaufgelöst gemessen.
-
-Für die ersten 10 Minuten wurden die Hintergundkonzentration C0 gemessen. Ab den 10. Minute wurde der erste Anstieg in der Konzentration registriert. Die Konzentration hat den Hintergrundkonzentration nach 20 Minuten vollständig wieder erreicht.
-
-![Tracer addition measurement](figs/tracer.png)
-
-**Berechnen Sie den Abfluss.**
-
-## A) Daten einlesen und visualisieren
-
-Lesen Sie die Datei `tracer.csv` ein. Plotten Sie die Daten. Schätzen Sie visuell die Hintergrundkonzentration C0.
-
-```{r, read-data, eval=TRUE, echo=FALSE}
-tracer <- read.csv("../data/tracer.csv")
-head(tracer, 4)
-tail(tracer, 4)
-plot(tracer, type="l", main="5 kg tracer addition at t=0",
-     ylim=c(0,0.45))
-```
-
-## B) Hintergrundkonzentration berechnen
-
-Berechnen Sie die Hintergrundkonzentration C0 (Mittelwert der ersten 10 Minuten).
-
-```{r, C0, eval=TRUE, echo=FALSE}
-C0 <- mean(tracer[tracer$time < 10, "conc"])
-print("C0")
-C0
-```
-
-## C) Hintergrundkonzentration abziehen
-
-Ziehen Sie die Hintergrundkonzentration C0 von der Messreihe ab.
-
-```{r, CC0, eval=TRUE, echo=FALSE}
-tracer$conc0 <- tracer$conc - C0
-plot(conc0~time, tracer, type="l")
-```
-
-## D) Zeitschritt
-
-Ermitteln Sie den Zeitschritt dt zwischen der Messungen.
-
-```{r, dt, eval=TRUE}
-dt <- tracer[2, "time"] - tracer[1, "time"]
-dt
-```
-
-## E) Konzentration integrieren
-
-Integrieren Sie die Tracer-Konzentration über die Zeit:
-
-```{r, integral, eval=TRUE, echo=FALSE}
-int <- sum(tracer$conc0 * dt)
-int
-```
-
-## F) Abfluss berechnen
-
-Berechnen Sie den Abfluss des Kaltenbachs. Die Formel für den Abfluss, mit einer zugegebenen Tracer-Masse von K und gemessenen Konzentration k lautet:
-
-$$
-Q = \frac{K}{\int k \, dt}~[m^3~s^{-1}]
-$$
-
-```{r, Q-berechnen, eval=TRUE, echo=FALSE}
-Q <- 5 / sum(tracer$conc0 * dt)
-Q
-```
