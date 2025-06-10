@@ -1,0 +1,16 @@
+---
+title: "Hydrologische Übungen"
+format: html
+---
+
+
+Hier finden Sie einige Übungen zum Thema Hydrologie mit R. Sie richten sich an Anfänger*innen in R, wobei der Fokus weniger auf dem Erlernen von R als Programmiersprache liegt, sondern auf dem Lösen hydrologischer Fragestellungen mit R. Ein gewisses Grundverständnis von R wird daher vorausgesetzt.
+
+Die folgenden Tutorials sind verfügbar:
+
+-   [Einführung in R](qmd/HW-Uebung01-R-Intro.qmd)
+-   [Gebietsniederschlag](qmd/HW-Uebung02-Gebietsniederschlag.qmd)
+-   [Infiltration und hydraulischer Gradient](qmd/uebung3_de.qmd)
+-   [Abflusskennwerte](qmd/uebung4.qmd)
+-   [Abflussmessung mit Salztracer](qmd/uebung4b-salztracer.qmd)
+-   [Abflussbeiwerte und Arbeiten mit Abflussdaten](qmd/uebung5_de.qmd)

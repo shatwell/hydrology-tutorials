@@ -1,0 +1,7 @@
+---
+title: "Über"
+format: html
+author: "Tom Shatwell (tom.shatwell@th-owl.de)"
+---
+
+Die Übungen auf dieser Webseite sind als Begleitmaterial zu den Vorlesungen im Modul „Hydrologie und Wasserbau“ im Bachelorstudiengang Umweltingenieurwesen (4. Semester) an der [Technischen Hochschule Ostwestfalen-Lippe](https://www.th-owl.de/) konzipiert.  

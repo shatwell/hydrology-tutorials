@@ -1,0 +1,103 @@
+---
+title: "Salztracer"
+format: html
+editor: source
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Einführung
+
+In dieser Aufgabe werden Sie den Abfluss in einem Bach anhand einer Tracermessung berechnen.
+
+Die Übungen erfordern Ihre R-Kenntnisse, und Sie werden wahrscheinlich mit der Syntax Schwierigkeiten haben. Verwenden Sie das Spickzettel, fragen Sie mich um Hilfe oder stellen Sie ChatGPT gezielte Fragen, falls Sie nicht weiterkommen, zum Beispiel: „Ich versuche, Daten in R einzulesen. Warum funktioniert dieser Code nicht: `<Code hier angeben>`?"
+
+### Packages
+
+Sind alle nötigen Packages installiert, müssen sie einmal in jedem neuen R-Session geladen werden.
+
+```{r, packages, eval=TRUE, include=FALSE}
+library(readr)     # modernized functions to read rectangular data like csv
+library(dplyr)     # the most essential tidyverse packages
+library(tidyr)     # contains for example pivot tables
+library(lubridate) # a tidyverse package for dates
+library(ggplot2)   # high level plotting with the grammar of graphics
+```
+
+```{r, packages, eval=FALSE}
+```
+
+
+## Aufgabe: Abflussberechnung mit Tracer-Messung:
+
+Um den Abfluss im Kaltenbach zu berechnen, wurde eine Tracer-Messung durchgeführt. 5 kg eines Tracers wurde im Bach zum Zeitpunkt t = 0 gekippt. An einer entsprechenden Stelle im Unterlauf (Komplettmischung des Tracers) wurde die Konzentration im Wasser ($\mathrm{kg m^{-3}}$) zeitlich hochaufgelöst gemessen.
+
+Für die ersten 10 Minuten wurden die Hintergundkonzentration C0 gemessen. Ab den 10. Minute wurde der erste Anstieg in der Konzentration registriert. Die Konzentration hat den Hintergrundkonzentration nach 20 Minuten vollständig wieder erreicht.
+
+![Tracer addition measurement](figs/tracer.png)
+
+**Berechnen Sie den Abfluss.**
+
+### A) Daten einlesen und visualisieren
+
+Lesen Sie die Datei `tracer.csv` ein. Plotten Sie die Daten. Schätzen Sie visuell die Hintergrundkonzentration C0.
+
+```{r, read-data, eval=TRUE, echo=FALSE}
+tracer <- read.csv("../data/tracer.csv")
+head(tracer, 4)
+tail(tracer, 4)
+plot(tracer, type="l", main="5 kg tracer addition at t=0",
+     ylim=c(0,0.45))
+```
+
+### B) Hintergrundkonzentration berechnen
+
+Berechnen Sie die Hintergrundkonzentration C0 (Mittelwert der ersten 10 Minuten).
+
+```{r, C0, eval=TRUE, echo=FALSE}
+C0 <- mean(tracer[tracer$time < 10, "conc"])
+print("C0")
+C0
+```
+
+### C) Hintergrundkonzentration abziehen
+
+Ziehen Sie die Hintergrundkonzentration C0 von der Messreihe ab.
+
+```{r, CC0, eval=TRUE, echo=FALSE}
+tracer$conc0 <- tracer$conc - C0
+plot(conc0~time, tracer, type="l")
+```
+
+### D) Zeitschritt
+
+Ermitteln Sie den Zeitschritt dt zwischen der Messungen.
+
+```{r, dt, eval=TRUE}
+dt <- tracer[2, "time"] - tracer[1, "time"]
+dt
+```
+
+### E) Konzentration integrieren
+
+Integrieren Sie die Tracer-Konzentration über die Zeit:
+
+```{r, integral, eval=TRUE, echo=FALSE}
+int <- sum(tracer$conc0 * dt)
+int
+```
+
+### F) Abfluss berechnen
+
+Berechnen Sie den Abfluss des Kaltenbachs. Die Formel für den Abfluss, mit einer zugegebenen Tracer-Masse von K und gemessenen Konzentration k lautet:
+
+$$
+Q = \frac{K}{\int k \, dt}~[m^3~s^{-1}]
+$$
+
+```{r, Q-berechnen, eval=TRUE, echo=FALSE}
+Q <- 5 / sum(tracer$conc0 * dt)
+Q
+```
